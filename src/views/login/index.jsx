@@ -49,7 +49,8 @@ function Login() {
 
             })
             .then((res) => {
-                if (res.status) {
+                console.log("re aqui", res)
+                if (res.status == 200) {
                     setIsLogged(true)
                     saveState("user", { email: data.email })
                     console.log(remenberMe)
