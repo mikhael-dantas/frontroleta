@@ -54,7 +54,7 @@ function PayHistoryTriggers(props) {
                     <Avatar style={{ margin: 5 }} size={40}>3ª</Avatar>
                 )}
 
-
+{/* 
                 {props.trigger[3] === "sim" && (
                     <Badge count={<CheckCircleIcon style={{ color: 'blue' }}></CheckCircleIcon>} offset={[-42, 40]}>
                         <Avatar style={{ margin: 5 }} size={40}>4ª</Avatar>
@@ -127,7 +127,7 @@ function PayHistoryTriggers(props) {
                 )}
                 {props.trigger[7] === "nda" && (
                     <Avatar style={{ margin: 5 }} size={40}>8ª</Avatar>
-                )}
+                )} */}
 
                 {/* 
 

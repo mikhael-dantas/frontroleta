@@ -50,11 +50,12 @@ function Login() {
             })
             .then((res) => {
                 console.log("re aqui", res)
-                if (res.status == 200) {
+                if (res.data.isLogged === true) {
                     setIsLogged(true)
                     saveState("user", { email: data.email })
+                    saveState("userId", res.data.user.id)
                     console.log(remenberMe)
-                    if (remenberMe === true) {
+                    if (remenberMe === true) { 
                         saveState("login", { email: data.email, password: data.password })
                     } else {
                         removeState("login")

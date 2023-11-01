@@ -56,12 +56,12 @@ export const itemsNavigationDesktop = [
         <CasinoIcon />
       </Link>
     ),
-    getItem(
-      "Racetrack",
-      "3",
-      <Link to={"/racetrack"}>
-        <CasinoIcon />
-      </Link>
-    ),
+    // getItem(
+    //   "Racetrack",
+    //   "3",
+    //   <Link to={"/racetrack"}>
+    //     <CasinoIcon />
+    //   </Link>
+    // ),
   ]),
 ];

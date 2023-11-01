@@ -101,14 +101,14 @@ function Roletas() {
 
       if (e.vizinhosPagos) {
         if (e.vizinhosPagos !== null) {
-          setNumberZeros(e.vizinhosPagos);
+          setNumberZeros(e.vizinhosPagos.map(x=>x+1));
           setVizinho(e.newtrigger);
         }
       }
 
       if (e.voisnsPagos) {
         if (e.voisnsPagos !== null) {
-          setNumberVoisnsPagos(e.voisnsPagos);
+          setNumberVoisnsPagos(e.voisnsPagos.map(x=>{return x + 1}));
           setVoisns(e.newtrigger);
         }
       }
@@ -199,14 +199,29 @@ function Roletas() {
       setDesconectou(true);
     }
 
-    socket.on("new-trigger", onConnect);
-    socket.on("pay-trigger", onPayTrigger);
-    socket.on("disconnect", teste);
+    socket.on("new-trigger",(e, id) => {
+        console.log("new", e, id)
+        if( Number(id) !==  Number(localStorage.getItem("userId"))) {return}
+       onConnect(e)});
+    socket.on("pay-trigger", (e, id) => {
+        console.log("pay", e, id)
+        if( Number(id) !==  Number(localStorage.getItem("userId"))) {return}
+      onPayTrigger(e)});
+      
+    // socket.on("disconnect", teste);
 
     return () => {
-      socket.off("new-trigger", onConnect);
-      socket.off("pay-trigger", onPayTrigger);
-      socket.off("disconnect", teste);
+      socket.off("new-trigger", (e, id) => {
+        console.log("newoff", e, id)
+        if( Number(id) !==  Number(localStorage.getItem("userId"))){return}
+        onConnect(e)}
+      );
+      socket.off("pay-trigger", (e, id) => {
+        console.log("payoff",e, id) 
+        if( Number(id) !==  Number(localStorage.getItem("userId")) ){return}
+        onPayTrigger(e)}
+      );
+      // socket.off("disconnect", teste);
     };
   }, [
     trigger,
